@@ -1,6 +1,4 @@
-/.directory
-/.metadata/
-/algorithms/.classpath
-/algorithms/.project
-/algorithms/.settings/
-/algorithms/bin/
+/.classpath
+/.project
+/.settings/
+/bin/
