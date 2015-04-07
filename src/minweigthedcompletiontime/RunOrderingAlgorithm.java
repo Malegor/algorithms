@@ -5,15 +5,15 @@ import java.util.List;
 
 import minweigthedcompletiontime.algorithm.JobOrderingAlgorithm;
 import minweigthedcompletiontime.comparator.DecreasingDifferenceComparator;
-import minweigthedcompletiontime.data.JobsInputReader;
 import minweigthedcompletiontime.data.Job;
+import minweigthedcompletiontime.data.JobsInputReader;
 
 public class RunOrderingAlgorithm {
     public static void main(final String[] args) {
 	final JobsInputReader reader = new JobsInputReader();
 	List<Job> inputJobs;
 	try {
-	    inputJobs = reader.read("/home/sylvain/Documents/workspace/jobs.txt");
+	    inputJobs = reader.read("/home/sylvain/Documents/workspace/algorithms/jobs.txt");
 	} catch (final IOException e) {
 	    e.printStackTrace();
 	    return;

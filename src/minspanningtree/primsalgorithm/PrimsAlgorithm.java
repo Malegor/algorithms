@@ -1,7 +1,6 @@
 package minspanningtree.primsalgorithm;
 
 import graph.Edge;
-import graph.Graph;
 import graph.Node;
 
 import java.util.Collection;
@@ -9,17 +8,19 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
+import minspanningtree.graph.PrimGraph;
+import minspanningtree.graph.PrimNode;
 
 public class PrimsAlgorithm {
-    public Set<Edge> execute(final Graph graph) {
+    public Set<Edge> execute(final PrimGraph graph) {
 	// create candidate set (heap)
-	final TreeSet<Node> candidates = new TreeSet<Node>();
-	final Collection<Node> nodes = graph.getNodes();
-	final Set<Node> done = new HashSet<Node>(nodes.size());
+	final TreeSet<PrimNode> candidates = new TreeSet<PrimNode>();
+	final Collection<PrimNode> nodes = graph.getNodes();
+	final Set<PrimNode> done = new HashSet<PrimNode>(nodes.size());
 	// Set all nodes to infinity
-	for (final Node node : nodes)
+	for (final PrimNode node : nodes)
 	    node.setMinIncomingCost(Integer.MAX_VALUE);
-	Node currentNode = nodes.iterator().next(); // Any node
+	PrimNode currentNode = nodes.iterator().next(); // Any node
 	currentNode.setMinIncomingCost(0);
 	candidates.add(currentNode);
 	final Set<Edge> result = new HashSet<Edge>(nodes.size());
@@ -35,18 +36,19 @@ public class PrimsAlgorithm {
 	return result;
     }
 
-    private Edge findEdge(final Set<Node> done, final Node currentNode) {
+    private Edge findEdge(final Set<PrimNode> done, final Node currentNode) {
 	for (final Edge edge : currentNode.getNeigbourEdges())
 	    if ((done.contains(edge.getStartNode()) || done.contains(edge.getEndNode()))
-		    && edge.getCost() == currentNode.getMinIncomingCost())
+		    && edge.getCost() == ((PrimNode) currentNode).getMinIncomingCost())
 		return edge;
 	return null;
     }
 
-    private void updateNeighbours(final Node currentNode, final TreeSet<Node> candidates, final Set<Node> done) {
-	Node neighbour;
+    private void updateNeighbours(final PrimNode currentNode, final TreeSet<PrimNode> candidates,
+	    final Set<PrimNode> done) {
+	PrimNode neighbour;
 	for (final Edge edge : currentNode.getNeigbourEdges()) {
-	    neighbour = edge.getStartNode().equals(currentNode) ? edge.getEndNode() : edge.getStartNode();
+	    neighbour = (PrimNode) (edge.getStartNode().equals(currentNode) ? edge.getEndNode() : edge.getStartNode());
 	    if (!done.contains(neighbour)) {
 		final int minCost = neighbour.getMinIncomingCost();
 		if (edge.getCost() < minCost) {

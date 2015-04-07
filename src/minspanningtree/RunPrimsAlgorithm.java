@@ -1,21 +1,20 @@
 package minspanningtree;
 
 import graph.Edge;
-import graph.Graph;
-import graph.GraphReader;
 
 import java.io.IOException;
 import java.util.Set;
 
-
+import minspanningtree.graph.PrimGraph;
+import minspanningtree.graph.PrimGraphReader;
 import minspanningtree.primsalgorithm.PrimsAlgorithm;
 
 public class RunPrimsAlgorithm {
     public static void main(final String[] args) {
-	final GraphReader reader = new GraphReader();
-	Graph graph;
+	final PrimGraphReader reader = new PrimGraphReader();
+	PrimGraph graph;
 	try {
-	    graph = reader.read("/home/sylvain/Documents/workspace/edges.txt");
+	    graph = (PrimGraph) reader.read("/home/sylvain/Documents/workspace/algorithms/edges.txt");
 	} catch (final IOException e) {
 	    e.printStackTrace();
 	    return;
