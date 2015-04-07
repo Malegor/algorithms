@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public abstract class GraphReader {
+public class GraphReader {
     public Graph read(final String fileName) throws IOException {
 	final String space = " ";
 	final BufferedReader reader = new BufferedReader(new FileReader(fileName));
@@ -20,5 +20,7 @@ public abstract class GraphReader {
 	return graph;
     }
 
-    protected abstract Graph createGraph(final int numberOfNodes, final int numberOfEdges);
+    protected Graph createGraph(final int numberOfNodes, final int numberOfEdges) {
+	return new Graph(numberOfNodes, numberOfEdges);
+    }
 }

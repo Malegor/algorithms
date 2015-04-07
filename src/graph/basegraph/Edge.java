@@ -3,8 +3,7 @@ package graph.basegraph;
 import java.util.HashSet;
 import java.util.Set;
 
-
-public class Edge {
+public class Edge implements Comparable<Edge> {
     private final Node startNode, endNode;
     private final int cost;
 
@@ -43,5 +42,10 @@ public class Edge {
 	extremities.add(this.endNode);
 	final Edge other = (Edge) obj;
 	return extremities.contains(other.getStartNode()) && extremities.contains(other.getEndNode());
+    }
+
+    @Override
+    public int compareTo(final Edge other) {
+	return this.cost < other.cost ? -1 : this.cost > other.cost ? 1 : 0;
     }
 }

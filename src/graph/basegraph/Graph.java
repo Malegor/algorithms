@@ -34,6 +34,10 @@ public class Graph {
 	return this.nodes.values();
     }
 
+    public Set<Edge> getEdges() {
+	return this.edges;
+    }
+
     protected Node createNote(final long idNode) {
 	return new Node(idNode);
     }

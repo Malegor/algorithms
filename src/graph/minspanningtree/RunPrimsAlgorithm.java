@@ -1,6 +1,5 @@
 package graph.minspanningtree;
 
-
 import graph.basegraph.Edge;
 import graph.minspanningtree.primgraph.PrimGraph;
 import graph.minspanningtree.primgraph.PrimGraphReader;
@@ -8,8 +7,6 @@ import graph.minspanningtree.primsalgorithm.PrimsAlgorithm;
 
 import java.io.IOException;
 import java.util.Set;
-
-
 
 public class RunPrimsAlgorithm {
     public static void main(final String[] args) {
