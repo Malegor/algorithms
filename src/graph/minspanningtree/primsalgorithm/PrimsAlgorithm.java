@@ -3,8 +3,8 @@ package graph.minspanningtree.primsalgorithm;
 
 import graph.basegraph.Edge;
 import graph.basegraph.Node;
-import graph.minspanningtree.graph.PrimGraph;
-import graph.minspanningtree.graph.PrimNode;
+import graph.minspanningtree.primgraph.PrimGraph;
+import graph.minspanningtree.primgraph.PrimNode;
 
 import java.util.Collection;
 import java.util.HashSet;

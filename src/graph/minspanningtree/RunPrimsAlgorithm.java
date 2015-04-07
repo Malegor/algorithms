@@ -2,8 +2,8 @@ package graph.minspanningtree;
 
 
 import graph.basegraph.Edge;
-import graph.minspanningtree.graph.PrimGraph;
-import graph.minspanningtree.graph.PrimGraphReader;
+import graph.minspanningtree.primgraph.PrimGraph;
+import graph.minspanningtree.primgraph.PrimGraphReader;
 import graph.minspanningtree.primsalgorithm.PrimsAlgorithm;
 
 import java.io.IOException;

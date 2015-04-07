@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class Graph {
+public class Graph {
     private final Map<Long, Node> nodes;
     private final Set<Edge> edges;
 
@@ -34,5 +34,7 @@ public abstract class Graph {
 	return this.nodes.values();
     }
 
-    protected abstract Node createNote(final long idNode);
+    protected Node createNote(final long idNode) {
+	return new Node(idNode);
+    }
 }

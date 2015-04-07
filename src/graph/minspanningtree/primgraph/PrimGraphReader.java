@@ -1,4 +1,4 @@
-package graph.minspanningtree.graph;
+package graph.minspanningtree.primgraph;
 
 import graph.basegraph.GraphReader;
 
