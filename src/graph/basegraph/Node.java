@@ -1,9 +1,9 @@
-package graph;
+package graph.basegraph;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class Node implements Comparable<Node> {
+public class Node {
     private final long id;
     private final Set<Edge> neighbourEdges;
 

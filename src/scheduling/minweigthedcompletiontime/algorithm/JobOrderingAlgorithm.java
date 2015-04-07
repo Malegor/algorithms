@@ -1,11 +1,12 @@
-package minweigthedcompletiontime.algorithm;
+package scheduling.minweigthedcompletiontime.algorithm;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import minweigthedcompletiontime.data.Job;
+import scheduling.minweigthedcompletiontime.data.Job;
+
 
 public class JobOrderingAlgorithm {
     public List<Job> orderJobs(final List<Job> jobs, final Comparator<Job> comparator) {

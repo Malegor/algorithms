@@ -1,4 +1,4 @@
-package minweigthedcompletiontime.data;
+package scheduling.minweigthedcompletiontime.data;
 
 public class Job {
     private final int weight;

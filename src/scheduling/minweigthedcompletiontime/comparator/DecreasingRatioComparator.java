@@ -1,8 +1,9 @@
-package minweigthedcompletiontime.comparator;
+package scheduling.minweigthedcompletiontime.comparator;
 
 import java.util.Comparator;
 
-import minweigthedcompletiontime.data.Job;
+import scheduling.minweigthedcompletiontime.data.Job;
+
 
 public class DecreasingRatioComparator implements Comparator<Job> {
     @Override

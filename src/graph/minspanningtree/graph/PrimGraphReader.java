@@ -1,6 +1,6 @@
-package minspanningtree.graph;
+package graph.minspanningtree.graph;
 
-import graph.GraphReader;
+import graph.basegraph.GraphReader;
 
 public class PrimGraphReader extends GraphReader {
 

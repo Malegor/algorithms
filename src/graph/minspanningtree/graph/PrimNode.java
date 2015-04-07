@@ -1,8 +1,8 @@
-package minspanningtree.graph;
+package graph.minspanningtree.graph;
 
-import graph.Node;
+import graph.basegraph.Node;
 
-public class PrimNode extends Node {
+public class PrimNode extends Node implements Comparable<PrimNode> {
 
     private int minIncomingCost;
 
@@ -20,9 +20,8 @@ public class PrimNode extends Node {
     }
 
     @Override
-    public int compareTo(final Node other) {
-	final PrimNode otherPrimNode = (PrimNode) other;
-	return this.minIncomingCost < otherPrimNode.getMinIncomingCost() ? -1 : this.minIncomingCost > otherPrimNode
+    public int compareTo(final PrimNode other) {
+	return this.minIncomingCost < other.getMinIncomingCost() ? -1 : this.minIncomingCost > other
 		.getMinIncomingCost() ? 1 : this.getId() < other.getId() ? -1 : this.getId() > other.getId() ? 1 : 0;
     }
 

@@ -1,4 +1,4 @@
-package minweigthedcompletiontime.data;
+package scheduling.minweigthedcompletiontime.data;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

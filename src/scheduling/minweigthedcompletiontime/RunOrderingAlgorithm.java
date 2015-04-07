@@ -1,12 +1,13 @@
-package minweigthedcompletiontime;
+package scheduling.minweigthedcompletiontime;
 
 import java.io.IOException;
 import java.util.List;
 
-import minweigthedcompletiontime.algorithm.JobOrderingAlgorithm;
-import minweigthedcompletiontime.comparator.DecreasingDifferenceComparator;
-import minweigthedcompletiontime.data.Job;
-import minweigthedcompletiontime.data.JobsInputReader;
+import scheduling.minweigthedcompletiontime.algorithm.JobOrderingAlgorithm;
+import scheduling.minweigthedcompletiontime.comparator.DecreasingDifferenceComparator;
+import scheduling.minweigthedcompletiontime.data.Job;
+import scheduling.minweigthedcompletiontime.data.JobsInputReader;
+
 
 public class RunOrderingAlgorithm {
     public static void main(final String[] args) {

@@ -1,8 +1,10 @@
-package minspanningtree.graph;
+package graph.minspanningtree.graph;
 
-import graph.Graph;
+
+import graph.basegraph.Graph;
 
 import java.util.Collection;
+
 
 public class PrimGraph extends Graph {
     public PrimGraph(final int numberOfNodes, final int numberOfEdges) {
