@@ -1,10 +1,10 @@
-package minspanningtree.data;
+package graph;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import minspanningtree.graph.Graph;
 
 public class GraphReader {
     public Graph read(final String fileName) throws IOException {

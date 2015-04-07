@@ -1,12 +1,13 @@
 package minspanningtree;
 
+import graph.Edge;
+import graph.Graph;
+import graph.GraphReader;
+
 import java.io.IOException;
 import java.util.Set;
 
 
-import minspanningtree.data.GraphReader;
-import minspanningtree.graph.Edge;
-import minspanningtree.graph.Graph;
 import minspanningtree.primsalgorithm.PrimsAlgorithm;
 
 public class RunPrimsAlgorithm {

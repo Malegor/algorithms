@@ -1,13 +1,14 @@
 package minspanningtree.primsalgorithm;
 
+import graph.Edge;
+import graph.Graph;
+import graph.Node;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-import minspanningtree.graph.Edge;
-import minspanningtree.graph.Graph;
-import minspanningtree.graph.Node;
 
 public class PrimsAlgorithm {
     public Set<Edge> execute(final Graph graph) {

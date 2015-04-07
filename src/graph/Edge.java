@@ -1,7 +1,8 @@
-package minspanningtree.graph;
+package graph;
 
 import java.util.HashSet;
 import java.util.Set;
+
 
 public class Edge {
     private final Node startNode, endNode;

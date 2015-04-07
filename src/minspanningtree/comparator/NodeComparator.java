@@ -1,8 +1,9 @@
 package minspanningtree.comparator;
 
+import graph.Node;
+
 import java.util.Comparator;
 
-import minspanningtree.graph.Node;
 
 public class NodeComparator implements Comparator<Node> {
     @Override
