@@ -17,7 +17,7 @@ public class RunPrimsAlgorithm {
 	    e.printStackTrace();
 	    return;
 	}
-	final PrimGraph graph = (PrimGraph) reader.getGraph();
+	final PrimGraph graph = reader.getGraph();
 	final PrimsAlgorithm primsAlgorithm = new PrimsAlgorithm();
 	final Set<Edge> minSpanningTree = primsAlgorithm.execute(graph);
 	System.out.println(minSpanningTree);

@@ -4,7 +4,7 @@ import data.AbstractReader;
 
 public class GraphReader extends AbstractReader {
 
-    private Graph graph;
+    protected Graph graph;
 
     @Override
     protected void processLine(final String[] line) {
@@ -13,11 +13,7 @@ public class GraphReader extends AbstractReader {
 
     @Override
     protected void processFirstLine(final String[] line) {
-	this.graph = this.createGraph(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
-    }
-
-    protected Graph createGraph(final int numberOfNodes, final int numberOfEdges) {
-	return new Graph(numberOfNodes, numberOfEdges);
+	this.graph = new Graph(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
     }
 
     public Graph getGraph() {

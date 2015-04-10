@@ -5,7 +5,13 @@ import graph.basegraph.GraphReader;
 public class PrimGraphReader extends GraphReader {
 
     @Override
-    protected PrimGraph createGraph(final int numberOfNodes, final int numberOfEdges) {
-	return new PrimGraph(numberOfNodes, numberOfEdges);
+    protected void processFirstLine(final String[] line) {
+	this.graph = new PrimGraph(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
     }
+
+    @Override
+    public PrimGraph getGraph() {
+	return (PrimGraph) super.getGraph();
+    }
+
 }
