@@ -11,13 +11,13 @@ import java.util.Set;
 public class RunPrimsAlgorithm {
     public static void main(final String[] args) {
 	final PrimGraphReader reader = new PrimGraphReader();
-	PrimGraph graph;
 	try {
-	    graph = (PrimGraph) reader.read("/home/sylvain/Documents/workspace/algorithms/edges.txt");
+	    reader.read("/home/sylvain/Documents/workspace/algorithms/edges.txt");
 	} catch (final IOException e) {
 	    e.printStackTrace();
 	    return;
 	}
+	final PrimGraph graph = (PrimGraph) reader.getGraph();
 	final PrimsAlgorithm primsAlgorithm = new PrimsAlgorithm();
 	final Set<Edge> minSpanningTree = primsAlgorithm.execute(graph);
 	System.out.println(minSpanningTree);

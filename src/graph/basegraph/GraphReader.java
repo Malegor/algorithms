@@ -1,26 +1,26 @@
 package graph.basegraph;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import data.AbstractReader;
 
-public class GraphReader {
-    public Graph read(final String fileName) throws IOException {
-	final String space = " ";
-	final BufferedReader reader = new BufferedReader(new FileReader(fileName));
-	String line = reader.readLine();
-	final String[] graphSize = line.split(space);
-	final Graph graph = this.createGraph(Integer.parseInt(graphSize[0]), Integer.parseInt(graphSize[1]));
-	while ((line = reader.readLine()) != null) {
-	    // use space as separator
-	    final String[] edgeData = line.split(space);
-	    graph.addEdge(Integer.parseInt(edgeData[0]), Integer.parseInt(edgeData[1]), Integer.parseInt(edgeData[2]));
-	}
-	reader.close();
-	return graph;
+public class GraphReader extends AbstractReader {
+
+    private Graph graph;
+
+    @Override
+    protected void processLine(final String[] line) {
+	this.graph.addEdge(Integer.parseInt(line[0]), Integer.parseInt(line[1]), Integer.parseInt(line[2]));
+    }
+
+    @Override
+    protected void processFirstLine(final String[] line) {
+	this.graph = this.createGraph(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
     }
 
     protected Graph createGraph(final int numberOfNodes, final int numberOfEdges) {
 	return new Graph(numberOfNodes, numberOfEdges);
+    }
+
+    public Graph getGraph() {
+	return this.graph;
     }
 }
