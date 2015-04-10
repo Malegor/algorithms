@@ -3,35 +3,56 @@ package graph.maxspacingclustering.greedyalgorithm;
 import graph.basegraph.Edge;
 import graph.basegraph.Graph;
 import graph.basegraph.Node;
-import graph.maxspacingclustering.graph.Cluster;
+import graph.maxspacingclustering.graph.UnionFindClusters;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 public class GreedyClusterAlgorithm {
 
-    private final int numberOfClusters;
+    private final Integer targetNumberOfClusters;
+    private Integer maxSpacing;
 
-    public GreedyClusterAlgorithm(final int numberOfClusters) {
-	this.numberOfClusters = numberOfClusters;
+    public GreedyClusterAlgorithm(final Integer targetNumberOfClusters, final Integer targetSpacing) {
+	this.targetNumberOfClusters = targetNumberOfClusters;
+	this.maxSpacing = targetSpacing;
     }
 
-    public Set<Cluster> execute(final Graph graph) {
-	final Set<Cluster> clusters = new HashSet<Cluster>(graph.getNodes().size());
-	for (final Node node : graph.getNodes())
-	    clusters.add(new Cluster(node));
+    public UnionFindClusters execute(final Graph graph) {
+	final UnionFindClusters clusters = new UnionFindClusters(graph.getNodes());
 	final List<Edge> edges = new ArrayList<Edge>(graph.getEdges());
 	Collections.sort(edges);
-	// TODO
+	final Iterator<Edge> iterator = edges.iterator();
+	Edge edge = null;
+	Node startNode, endNode;
+	while (iterator.hasNext() && this.shouldAlgorithmStop(clusters, edge)) {
+	    edge = iterator.next();
+	    startNode = edge.getStartNode();
+	    endNode = edge.getEndNode();
+	    if (!clusters.find(startNode).equals(clusters.find(endNode)))
+		clusters.union(startNode, endNode);
+	}
+	boolean sameCluster = true;
+	while (sameCluster && iterator.hasNext()) {
+	    edge = iterator.next();
+	    startNode = edge.getStartNode();
+	    endNode = edge.getEndNode();
+	    sameCluster = clusters.find(startNode).equals(clusters.find(endNode));
+	}
+	this.maxSpacing = Integer.valueOf(edge.getCost());
+	System.out.println(edge);
 	return clusters;
     }
 
-    public int calculateMaxSpacing(final Set<Cluster> clusters) {
-	// TODO Auto-generated method stub
-	return 0;
+    private boolean shouldAlgorithmStop(final UnionFindClusters clusters, final Edge currentEdge) {
+	if (this.targetNumberOfClusters != null)
+	    return this.targetNumberOfClusters.intValue() < clusters.getNumberOfClusters();
+	return currentEdge != null && this.maxSpacing.intValue() <= currentEdge.getCost();
     }
 
+    public int getMaxSpacing() {
+	return this.maxSpacing.intValue();
+    }
 }
