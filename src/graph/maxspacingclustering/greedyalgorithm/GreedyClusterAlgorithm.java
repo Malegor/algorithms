@@ -25,7 +25,7 @@ public class GreedyClusterAlgorithm {
 	final List<Edge> edges = new ArrayList<Edge>(graph.getEdges());
 	Collections.sort(edges);
 	final Iterator<Edge> iterator = edges.iterator();
-	Edge edge = null;
+	Edge edge = new Edge(null, null, Integer.MIN_VALUE);
 	Node startNode, endNode;
 	while (iterator.hasNext() && !this.shouldAlgorithmStop(clusters, edge)) {
 	    edge = iterator.next();
@@ -47,8 +47,6 @@ public class GreedyClusterAlgorithm {
     }
 
     private boolean shouldAlgorithmStop(final UnionFindClusters clusters, final Edge currentEdge) {
-	if (currentEdge == null)
-	    return true;
 	if (this.targetNumberOfClusters != null)
 	    return this.targetNumberOfClusters.intValue() >= clusters.getNumberOfClusters();
 	return this.maxSpacing < currentEdge.getCost();

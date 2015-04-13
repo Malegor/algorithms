@@ -35,9 +35,11 @@ public class ComputeSmallestHammingEdges {
 	for (int i = 0; i < this.NUMBER_OF_BITS + 1; i++)
 	    nodesBySum.add(new HashSet<HammingNode>(20000));
 	int sum;
-	for (final Node hammingNode : nodes) {
-	    sum = ((HammingNode) hammingNode).getBitSum();
-	    nodesBySum.get(sum).add((HammingNode) hammingNode);
+	HammingNode hammingNode;
+	for (final Node node : nodes) {
+	    hammingNode = (HammingNode) node;
+	    sum = hammingNode.getBitSum();
+	    nodesBySum.get(sum).add(hammingNode);
 	}
 	// The possible edges are necessarily within maxSpacing in difference.
 	int costIJ;
@@ -57,8 +59,8 @@ public class ComputeSmallestHammingEdges {
     /**
      * @param nodeI
      * @param nodeJ
-     * @return O custo do arco entre os dois nos, um valor alto se for superior
-     *         ao maxSpacing
+     * @return The cost of the edge between both nodes and high value if more
+     *         then maxSpacing
      */
     private int calculateCost(final HammingNode nodeI, final HammingNode nodeJ) {
 	int result = 0;
