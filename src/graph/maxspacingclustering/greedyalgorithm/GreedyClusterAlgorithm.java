@@ -13,7 +13,7 @@ import java.util.List;
 public class GreedyClusterAlgorithm {
 
     private final Integer targetNumberOfClusters;
-    private Integer maxSpacing;
+    private int maxSpacing;
 
     public GreedyClusterAlgorithm(final Integer targetNumberOfClusters, final Integer targetSpacing) {
 	this.targetNumberOfClusters = targetNumberOfClusters;
@@ -27,7 +27,7 @@ public class GreedyClusterAlgorithm {
 	final Iterator<Edge> iterator = edges.iterator();
 	Edge edge = null;
 	Node startNode, endNode;
-	while (iterator.hasNext() && this.shouldAlgorithmStop(clusters, edge)) {
+	while (iterator.hasNext() && !this.shouldAlgorithmStop(clusters, edge)) {
 	    edge = iterator.next();
 	    startNode = edge.getStartNode();
 	    endNode = edge.getEndNode();
@@ -41,18 +41,20 @@ public class GreedyClusterAlgorithm {
 	    endNode = edge.getEndNode();
 	    sameCluster = clusters.find(startNode).equals(clusters.find(endNode));
 	}
-	this.maxSpacing = Integer.valueOf(edge.getCost());
+	this.maxSpacing = edge.getCost();
 	System.out.println(edge);
 	return clusters;
     }
 
     private boolean shouldAlgorithmStop(final UnionFindClusters clusters, final Edge currentEdge) {
+	if (currentEdge == null)
+	    return true;
 	if (this.targetNumberOfClusters != null)
-	    return this.targetNumberOfClusters.intValue() < clusters.getNumberOfClusters();
-	return currentEdge != null && this.maxSpacing.intValue() <= currentEdge.getCost();
+	    return this.targetNumberOfClusters.intValue() >= clusters.getNumberOfClusters();
+	return this.maxSpacing < currentEdge.getCost();
     }
 
     public int getMaxSpacing() {
-	return this.maxSpacing.intValue();
+	return this.maxSpacing;
     }
 }

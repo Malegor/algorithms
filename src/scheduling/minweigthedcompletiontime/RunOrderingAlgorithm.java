@@ -12,7 +12,7 @@ public class RunOrderingAlgorithm {
     public static void main(final String[] args) {
 	final JobsInputReader reader = new JobsInputReader();
 	try {
-	    reader.read("/home/sylvain/Documents/workspace/algorithms/jobs.txt");
+	    reader.read("jobs.txt");
 	} catch (final IOException e) {
 	    e.printStackTrace();
 	    return;

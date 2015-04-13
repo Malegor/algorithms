@@ -12,7 +12,7 @@ public class RunPrimsAlgorithm {
     public static void main(final String[] args) {
 	final PrimGraphReader reader = new PrimGraphReader();
 	try {
-	    reader.read("/home/sylvain/Documents/workspace/algorithms/edges.txt");
+	    reader.read("edges.txt");
 	} catch (final IOException e) {
 	    e.printStackTrace();
 	    return;

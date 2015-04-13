@@ -30,6 +30,10 @@ public class Graph {
 	node2.addNeighbourEdge(newEdge);
     }
 
+    public void addNode(final Node node) {
+	this.nodes.put(Long.valueOf(node.getId()), node);
+    }
+
     public Collection<? extends Node> getNodes() {
 	return this.nodes.values();
     }
