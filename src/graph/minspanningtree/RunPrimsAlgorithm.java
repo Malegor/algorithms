@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class RunPrimsAlgorithm {
     public static void main(final String[] args) {
-	final GraphReader reader = new GraphReader();
+	final GraphReader reader = new GraphReader(false);
 	try {
 	    reader.read("edges.txt");
 	} catch (final IOException e) {

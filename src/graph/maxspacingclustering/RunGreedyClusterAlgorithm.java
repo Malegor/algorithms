@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class RunGreedyClusterAlgorithm {
     public static void main(final String[] args) {
-	final GraphReader reader = new GraphReader();
+	final GraphReader reader = new GraphReader(false);
 	try {
 	    reader.read("clustering1.txt");
 	} catch (final IOException e) {

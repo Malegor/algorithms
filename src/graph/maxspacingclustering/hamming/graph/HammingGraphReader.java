@@ -12,6 +12,7 @@ public class HammingGraphReader extends GraphReader {
     private int currentNodeId;
 
     public HammingGraphReader() {
+	super(false);
 	this.currentNodeId = 1;
     }
 
@@ -28,7 +29,7 @@ public class HammingGraphReader extends GraphReader {
     protected void processFirstLine(final String[] line) {
 	// The second argument is not used as the number of edges but the number
 	// of bits.
-	this.graph = new Graph(Integer.parseInt(line[0]), Integer.parseInt(line[0]));
+	this.graph = new Graph(Integer.parseInt(line[0]), Integer.parseInt(line[0]), false);
     }
 
 }
