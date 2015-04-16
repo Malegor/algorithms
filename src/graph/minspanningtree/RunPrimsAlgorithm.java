@@ -1,8 +1,8 @@
 package graph.minspanningtree;
 
 import graph.basegraph.Edge;
-import graph.minspanningtree.primgraph.PrimGraph;
-import graph.minspanningtree.primgraph.PrimGraphReader;
+import graph.basegraph.Graph;
+import graph.basegraph.GraphReader;
 import graph.minspanningtree.primsalgorithm.PrimsAlgorithm;
 
 import java.io.IOException;
@@ -10,14 +10,14 @@ import java.util.Set;
 
 public class RunPrimsAlgorithm {
     public static void main(final String[] args) {
-	final PrimGraphReader reader = new PrimGraphReader();
+	final GraphReader reader = new GraphReader();
 	try {
 	    reader.read("edges.txt");
 	} catch (final IOException e) {
 	    e.printStackTrace();
 	    return;
 	}
-	final PrimGraph graph = reader.getGraph();
+	final Graph graph = reader.getGraph();
 	final PrimsAlgorithm primsAlgorithm = new PrimsAlgorithm();
 	final Set<Edge> minSpanningTree = primsAlgorithm.execute(graph);
 	System.out.println(minSpanningTree);

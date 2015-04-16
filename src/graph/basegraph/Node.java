@@ -3,13 +3,15 @@ package graph.basegraph;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Node {
+public class Node implements Comparable<Node> {
     private final long id;
     private final Set<Edge> neighbourEdges;
+    private int label;
 
     public Node(final long theId) {
 	this.id = theId;
 	this.neighbourEdges = new HashSet<Edge>(5);
+	this.label = Integer.MAX_VALUE;
     }
 
     public void addNeighbourEdge(final Edge edge) {
@@ -22,6 +24,14 @@ public class Node {
 
     public long getId() {
 	return this.id;
+    }
+
+    public int getLabel() {
+	return this.label;
+    }
+
+    public void setLabel(final int newLabel) {
+	this.label = newLabel;
     }
 
     @Override
@@ -37,5 +47,11 @@ public class Node {
     @Override
     public String toString() {
 	return String.valueOf(this.id);
+    }
+
+    @Override
+    public int compareTo(final Node other) {
+	final int diff = this.label - other.label;
+	return diff < 0 ? -1 : diff > 0 ? 1 : Long.valueOf(this.id).compareTo(Long.valueOf(other.id));
     }
 }

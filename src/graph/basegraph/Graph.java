@@ -34,7 +34,7 @@ public class Graph {
 	this.nodes.put(Long.valueOf(node.getId()), node);
     }
 
-    public Collection<? extends Node> getNodes() {
+    public Collection<Node> getNodes() {
 	return this.nodes.values();
     }
 

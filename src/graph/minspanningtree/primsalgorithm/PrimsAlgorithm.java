@@ -1,29 +1,25 @@
 package graph.minspanningtree.primsalgorithm;
 
-
 import graph.basegraph.Edge;
+import graph.basegraph.Graph;
 import graph.basegraph.Node;
-import graph.minspanningtree.primgraph.PrimGraph;
-import graph.minspanningtree.primgraph.PrimNode;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-
-
 public class PrimsAlgorithm {
-    public Set<Edge> execute(final PrimGraph graph) {
+    public Set<Edge> execute(final Graph graph) {
 	// create candidate set (heap)
-	final TreeSet<PrimNode> candidates = new TreeSet<PrimNode>();
-	final Collection<PrimNode> nodes = graph.getNodes();
-	final Set<PrimNode> done = new HashSet<PrimNode>(nodes.size());
+	final TreeSet<Node> candidates = new TreeSet<Node>();
+	final Collection<Node> nodes = graph.getNodes();
+	final Set<Node> done = new HashSet<Node>(nodes.size());
 	// Set all nodes to infinity
-	for (final PrimNode node : nodes)
-	    node.setMinIncomingCost(Integer.MAX_VALUE);
-	PrimNode currentNode = nodes.iterator().next(); // Any node
-	currentNode.setMinIncomingCost(0);
+	for (final Node node : nodes)
+	    node.setLabel(Integer.MAX_VALUE);
+	Node currentNode = nodes.iterator().next(); // Any node
+	currentNode.setLabel(0);
 	candidates.add(currentNode);
 	final Set<Edge> result = new HashSet<Edge>(nodes.size());
 	Edge currentEdge;
@@ -38,25 +34,24 @@ public class PrimsAlgorithm {
 	return result;
     }
 
-    private Edge findEdge(final Set<PrimNode> done, final Node currentNode) {
+    private Edge findEdge(final Set<Node> done, final Node currentNode) {
 	for (final Edge edge : currentNode.getNeigbourEdges())
 	    if ((done.contains(edge.getStartNode()) || done.contains(edge.getEndNode()))
-		    && edge.getCost() == ((PrimNode) currentNode).getMinIncomingCost())
+		    && edge.getCost() == currentNode.getLabel())
 		return edge;
 	return null;
     }
 
-    private void updateNeighbours(final PrimNode currentNode, final TreeSet<PrimNode> candidates,
-	    final Set<PrimNode> done) {
-	PrimNode neighbour;
+    private void updateNeighbours(final Node currentNode, final TreeSet<Node> candidates, final Set<Node> done) {
+	Node neighbour;
 	for (final Edge edge : currentNode.getNeigbourEdges()) {
-	    neighbour = (PrimNode) (edge.getStartNode().equals(currentNode) ? edge.getEndNode() : edge.getStartNode());
+	    neighbour = edge.getStartNode().equals(currentNode) ? edge.getEndNode() : edge.getStartNode();
 	    if (!done.contains(neighbour)) {
-		final int minCost = neighbour.getMinIncomingCost();
+		final int minCost = neighbour.getLabel();
 		if (edge.getCost() < minCost) {
 		    if (minCost < Integer.MAX_VALUE)
 			candidates.remove(neighbour);
-		    neighbour.setMinIncomingCost(edge.getCost());
+		    neighbour.setLabel(edge.getCost());
 		    candidates.add(neighbour);
 		}
 	    }
