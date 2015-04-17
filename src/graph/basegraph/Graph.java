@@ -41,6 +41,10 @@ public class Graph {
 	return this.nodes.values();
     }
 
+    public Node getNodeById(final Long idNode) {
+	return this.nodes.get(idNode);
+    }
+
     public Set<Edge> getEdges() {
 	return this.edges;
     }
