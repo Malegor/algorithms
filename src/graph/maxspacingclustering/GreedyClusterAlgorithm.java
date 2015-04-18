@@ -1,4 +1,4 @@
-package graph.maxspacingclustering.greedyalgorithm;
+package graph.maxspacingclustering;
 
 import graph.basegraph.Edge;
 import graph.basegraph.Graph;

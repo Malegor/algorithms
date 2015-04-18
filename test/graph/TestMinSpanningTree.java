@@ -1,15 +1,19 @@
-package graph.minspanningtree;
+package graph;
 
 import graph.basegraph.Edge;
 import graph.basegraph.Graph;
 import graph.basegraph.GraphReader;
-import graph.minspanningtree.primsalgorithm.PrimsAlgorithm;
+import graph.minspanningtree.PrimsAlgorithm;
 
 import java.io.IOException;
 import java.util.Set;
 
-public class RunPrimsAlgorithm {
-    public static void main(final String[] args) {
+import org.junit.Test;
+
+public class TestMinSpanningTree {
+
+    @Test
+    public void testExecute() {
 	final GraphReader reader = new GraphReader(false);
 	try {
 	    reader.read("edges.txt");

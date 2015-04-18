@@ -1,4 +1,4 @@
-package graph.minspanningtree.primsalgorithm;
+package graph.minspanningtree;
 
 import graph.basegraph.Edge;
 import graph.basegraph.Graph;

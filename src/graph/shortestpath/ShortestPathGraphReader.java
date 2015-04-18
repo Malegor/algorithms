@@ -1,11 +1,11 @@
-package graph.mincostpath.dijkstra;
+package graph.shortestpath;
 
 import graph.basegraph.Graph;
 import graph.basegraph.GraphReader;
 
-public class DijkstraGraphReader extends GraphReader {
+public class ShortestPathGraphReader extends GraphReader {
 
-    public DijkstraGraphReader() {
+    public ShortestPathGraphReader() {
 	super(false);
     }
 

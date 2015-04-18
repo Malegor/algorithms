@@ -1,4 +1,4 @@
-package graph.mincostpath.dijkstra;
+package graph.shortestpath;
 
 import graph.basegraph.Edge;
 import graph.basegraph.Graph;
@@ -28,7 +28,7 @@ public class DijkstraAlgorithm {
 		neighbour = edge.getEndNode();
 		if (!visited.contains(neighbour) && bestCandidate.getLabel() + edge.getCost() < neighbour.getLabel()) {
 		    if (candidates.contains(neighbour))
-			candidates.remove(neighbour);
+			candidates.remove(neighbour);// TODO: O(n), find better way
 		    neighbour.setLabel(bestCandidate.getLabel() + edge.getCost());
 		    candidates.add(neighbour);
 		}

@@ -1,15 +1,19 @@
-package scheduling.minweigthedcompletiontime;
+package scheduling;
 
 import java.io.IOException;
 import java.util.List;
+
+import org.junit.Test;
 
 import scheduling.minweigthedcompletiontime.algorithm.JobOrderingAlgorithm;
 import scheduling.minweigthedcompletiontime.comparator.DecreasingDifferenceComparator;
 import scheduling.minweigthedcompletiontime.data.Job;
 import scheduling.minweigthedcompletiontime.data.JobsInputReader;
 
-public class RunOrderingAlgorithm {
-    public static void main(final String[] args) {
+public class TestMinWeightedCompletionTime {
+
+    @Test
+    public void testAlgorithm() {
 	final JobsInputReader reader = new JobsInputReader();
 	try {
 	    reader.read("jobs.txt");

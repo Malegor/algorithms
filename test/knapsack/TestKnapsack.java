@@ -8,8 +8,12 @@ import knapsack.algorithm.GreedyKnapsackAlgorithm;
 import knapsack.data.KnapsackItem;
 import knapsack.data.KnapsackReader;
 
-public class RunKnapsackAlgorithm {
-    public static void main(final String[] args) {
+import org.junit.Test;
+
+public class TestKnapsack {
+
+    @Test
+    public void testDynamicAndGreedyAlgorithms() {
 	final KnapsackReader reader = new KnapsackReader();
 	try {
 	    reader.read("knapsack_big.txt");
