@@ -1,8 +1,8 @@
 package graph.minspanningtree;
 
-import graph.basegraph.Edge;
-import graph.basegraph.Graph;
-import graph.basegraph.Node;
+import graph.base.Edge;
+import graph.base.Graph;
+import graph.base.Node;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -44,10 +44,11 @@ public class PrimsAlgorithm {
 
     private void updateNeighbours(final Node currentNode, final TreeSet<Node> candidates, final Set<Node> done) {
 	Node neighbour;
+	long minCost;
 	for (final Edge edge : currentNode.getNeigbourEdges()) {
 	    neighbour = edge.getStartNode().equals(currentNode) ? edge.getEndNode() : edge.getStartNode();
 	    if (!done.contains(neighbour)) {
-		final int minCost = neighbour.getLabel();
+		minCost = neighbour.getLabel();
 		if (edge.getCost() < minCost) {
 		    if (minCost < Integer.MAX_VALUE)
 			candidates.remove(neighbour);

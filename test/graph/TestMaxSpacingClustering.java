@@ -1,7 +1,7 @@
 package graph;
 
-import graph.basegraph.Graph;
-import graph.basegraph.GraphReader;
+import graph.base.Graph;
+import graph.base.GraphReader;
 import graph.maxspacingclustering.GreedyClusterAlgorithm;
 import graph.maxspacingclustering.graph.UnionFindClusters;
 import graph.maxspacingclustering.hamming.graph.HammingGraphReader;

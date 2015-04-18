@@ -1,8 +1,9 @@
 package graph.shortestpath;
 
-import graph.basegraph.Edge;
-import graph.basegraph.Graph;
-import graph.basegraph.Node;
+import exception.NegativeEdgeInGraphException;
+import graph.base.Edge;
+import graph.base.Graph;
+import graph.base.Node;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -11,12 +12,16 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 public class DijkstraAlgorithm {
-    public void execute(final Graph graph, final Node source) {
+
+    public void execute(final Graph graph, final Node source) throws NegativeEdgeInGraphException {
 	final Collection<Node> allNodes = graph.getNodes();
 	final PriorityQueue<Node> candidates = new PriorityQueue<Node>(allNodes.size());
 	final Set<Node> visited = new HashSet<Node>(allNodes.size());
 	for (final Node node : allNodes)
 	    node.setLabel(Integer.MAX_VALUE);
+	for (final Edge edge : graph.getEdges())
+	    if (edge.getCost() < 0)
+		throw new NegativeEdgeInGraphException();
 	source.setLabel(0);
 	candidates.add(source);
 	Node bestCandidate, neighbour;

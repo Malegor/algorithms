@@ -1,8 +1,8 @@
 package graph;
 
-import graph.basegraph.Edge;
-import graph.basegraph.Graph;
-import graph.basegraph.GraphReader;
+import graph.base.Edge;
+import graph.base.Graph;
+import graph.base.GraphReader;
 import graph.minspanningtree.PrimsAlgorithm;
 
 import java.io.IOException;

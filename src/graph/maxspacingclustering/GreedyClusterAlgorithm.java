@@ -1,8 +1,8 @@
 package graph.maxspacingclustering;
 
-import graph.basegraph.Edge;
-import graph.basegraph.Graph;
-import graph.basegraph.Node;
+import graph.base.Edge;
+import graph.base.Graph;
+import graph.base.Node;
 import graph.maxspacingclustering.graph.UnionFindClusters;
 
 import java.util.ArrayList;

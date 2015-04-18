@@ -1,6 +1,6 @@
 package graph.maxspacingclustering.graph;
 
-import graph.basegraph.Node;
+import graph.base.Node;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,6 +1,6 @@
 package graph.maxspacingclustering.hamming.graph;
 
-import graph.basegraph.Node;
+import graph.base.Node;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package graph.shortestpath;
 
-import graph.basegraph.Graph;
-import graph.basegraph.GraphReader;
+import graph.base.Graph;
+import graph.base.GraphReader;
 
 public class ShortestPathGraphReader extends GraphReader {
 

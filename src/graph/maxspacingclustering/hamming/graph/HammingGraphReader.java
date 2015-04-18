@@ -1,7 +1,7 @@
 package graph.maxspacingclustering.hamming.graph;
 
-import graph.basegraph.Graph;
-import graph.basegraph.GraphReader;
+import graph.base.Graph;
+import graph.base.GraphReader;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,22 +1,16 @@
 package graph.shortestpath;
 
-import graph.basegraph.Edge;
-import graph.basegraph.Graph;
-import graph.basegraph.Node;
+import exception.NegativeCycleInGraphException;
+import graph.base.Edge;
+import graph.base.Graph;
+import graph.base.Node;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 public class BellmanFordAlgorithm {
-
-    /**
-     * @param graph
-     * @param source
-     * @return True if the algorithm found an optimal solution.
-     * False if the graph has a negative cycle.
-     */
-    public boolean execute(final Graph graph, final Node source) {
+    public void execute(final Graph graph, final Node source) throws NegativeCycleInGraphException {
 	final Collection<Node> allNodes = graph.getNodes();
 	for (final Node node : allNodes)
 	    node.setLabel(Integer.MAX_VALUE);
@@ -42,9 +36,9 @@ public class BellmanFordAlgorithm {
 		    }
 		}
 	    if (!isModified)
-		return true;
+		return;
 	    existUnvisitedNodes = visited.addAll(toVisitNext);
 	}
-	return !isModified;// in fact it can't possibly be false here.
+	throw new NegativeCycleInGraphException();
     }
 }
