@@ -5,9 +5,9 @@ import java.util.Set;
 
 public class Edge implements Comparable<Edge> {
     private final Node startNode, endNode;
-    private final int cost;
+    private final double cost;
 
-    public Edge(final Node start, final Node end, final int theCost) {
+    public Edge(final Node start, final Node end, final double theCost) {
 	this.startNode = start;
 	this.endNode = end;
 	this.cost = theCost;
@@ -21,7 +21,7 @@ public class Edge implements Comparable<Edge> {
 	return this.endNode;
     }
 
-    public int getCost() {
+    public double getCost() {
 	return this.cost;
     }
 
@@ -46,6 +46,6 @@ public class Edge implements Comparable<Edge> {
 
     @Override
     public int compareTo(final Edge other) {
-	return this.cost < other.cost ? -1 : this.cost > other.cost ? 1 : 0;
+	return Math.abs(this.cost - other.cost) < Graph.EPSILON ? 0 : this.cost < other.cost ? -1 : 1;
     }
 }

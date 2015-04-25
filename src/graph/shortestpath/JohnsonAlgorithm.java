@@ -11,10 +11,10 @@ import java.util.Set;
 
 public class JohnsonAlgorithm {
 
-    public long execute(final Graph graph) throws NegativeCycleInGraphException, NegativeEdgeInGraphException {
+    public double execute(final Graph graph) throws NegativeCycleInGraphException, NegativeEdgeInGraphException {
 	final Graph graphWithoutNegativeEdge = this.updateEdgesCosts(graph);
 	final DijkstraAlgorithm dijkstra = new DijkstraAlgorithm();
-	long bestValue = Long.MAX_VALUE, currentValue;
+	double bestValue = Double.MAX_VALUE, currentValue;
 	for (final Node source : graphWithoutNegativeEdge.getNodes()) {
 	    dijkstra.execute(graphWithoutNegativeEdge, source);
 	    for (final Node target : graphWithoutNegativeEdge.getNodes()) {

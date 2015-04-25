@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class Graph {
+    public static final double EPSILON = 10e-5;
+
     private final Map<Long, Node> nodes;
     private final Set<Edge> edges;
     private final boolean isDirected;
@@ -17,7 +19,7 @@ public class Graph {
 	this.isDirected = directed;
     }
 
-    public void addEdge(final long idNode1, final long idNode2, final int cost) {
+    public void addEdge(final long idNode1, final long idNode2, final double cost) {
 	final Long key1 = Long.valueOf(idNode1);
 	if (!this.nodes.containsKey(key1))
 	    this.addNode(new Node(idNode1));

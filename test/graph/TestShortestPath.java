@@ -41,7 +41,7 @@ public class TestShortestPath {
 	graph.addEdge(2, 4, 1);
 	graph.addEdge(4, 1, 3);
 	final JohnsonAlgorithm johnson = new JohnsonAlgorithm();
-	final long solutionValue = johnson.execute(graph);
+	final double solutionValue = johnson.execute(graph);
 	System.out.println(solutionValue);
     }
 
@@ -56,7 +56,7 @@ public class TestShortestPath {
 	final GraphReader reader = new GraphReader(true);
 	reader.read(fileName);
 	final JohnsonAlgorithm johnson = new JohnsonAlgorithm();
-	long solutionValue;
+	double solutionValue;
 	try {
 	    solutionValue = johnson.execute(reader.getGraph());
 	    System.out.println(fileName + " : " + solutionValue);

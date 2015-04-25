@@ -13,7 +13,7 @@ import java.util.List;
 public class GreedyClusterAlgorithm {
 
     private final Integer targetNumberOfClusters;
-    private int maxSpacing;
+    private double maxSpacing;
 
     public GreedyClusterAlgorithm(final Integer targetNumberOfClusters, final Integer targetSpacing) {
 	this.targetNumberOfClusters = targetNumberOfClusters;
@@ -52,7 +52,7 @@ public class GreedyClusterAlgorithm {
 	return this.maxSpacing < currentEdge.getCost();
     }
 
-    public int getMaxSpacing() {
+    public double getMaxSpacing() {
 	return this.maxSpacing;
     }
 }

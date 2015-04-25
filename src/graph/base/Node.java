@@ -6,12 +6,12 @@ import java.util.Set;
 public class Node implements Comparable<Node> {
     private final long id;
     private final Set<Edge> neighbourEdges;
-    private long label;
+    private double label;
 
     public Node(final long theId) {
 	this.id = theId;
 	this.neighbourEdges = new HashSet<Edge>(5);
-	this.label = Integer.MAX_VALUE;
+	this.label = Double.MAX_VALUE;
     }
 
     public void addNeighbourEdge(final Edge edge) {
@@ -26,12 +26,12 @@ public class Node implements Comparable<Node> {
 	return this.id;
     }
 
-    public long getLabel() {
+    public double getLabel() {
 	return this.label;
     }
 
-    public void setLabel(final long newLabel) {
-	this.label = newLabel;
+    public void setLabel(final double value) {
+	this.label = value;
     }
 
     @Override
@@ -51,7 +51,8 @@ public class Node implements Comparable<Node> {
 
     @Override
     public int compareTo(final Node other) {
-	final long diff = this.label - other.label;
-	return diff < 0 ? -1 : diff > 0 ? 1 : Long.valueOf(this.id).compareTo(Long.valueOf(other.id));
+	final double diff = this.label - other.label;
+	return Math.abs(diff) < Graph.EPSILON ? Long.valueOf(this.id).compareTo(Long.valueOf(other.id)) : diff < 0 ? -1
+		: 1;
     }
 }

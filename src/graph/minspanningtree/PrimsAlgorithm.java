@@ -37,14 +37,14 @@ public class PrimsAlgorithm {
     private Edge findEdge(final Set<Node> done, final Node currentNode) {
 	for (final Edge edge : currentNode.getNeigbourEdges())
 	    if ((done.contains(edge.getStartNode()) || done.contains(edge.getEndNode()))
-		    && edge.getCost() == currentNode.getLabel())
+		    && Math.abs(edge.getCost() - currentNode.getLabel()) < Graph.EPSILON)
 		return edge;
 	return null;
     }
 
     private void updateNeighbours(final Node currentNode, final TreeSet<Node> candidates, final Set<Node> done) {
 	Node neighbour;
-	long minCost;
+	double minCost;
 	for (final Edge edge : currentNode.getNeigbourEdges()) {
 	    neighbour = edge.getStartNode().equals(currentNode) ? edge.getEndNode() : edge.getStartNode();
 	    if (!done.contains(neighbour)) {
