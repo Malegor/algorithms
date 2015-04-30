@@ -5,12 +5,13 @@ import graph.base.GraphReader;
 import graph.base.GraphXYReader;
 import graph.base.NodeXY;
 import graph.tsp.DynamicProgTSPAlgorithm;
+import graph.tsp.GreedyTSPAlgorithm;
 
 import java.io.IOException;
 
 import org.junit.Test;
 
-public class TestDynmicProgTSP {
+public class TestAlgorithmTSP {
 
     @Test
     public void testSmallGraph() throws IOException {
@@ -33,6 +34,9 @@ public class TestDynmicProgTSP {
 	final DynamicProgTSPAlgorithm algorithm = new DynamicProgTSPAlgorithm();
 	final double result = algorithm.execute(graph);
 	System.out.println(result);
+	final GreedyTSPAlgorithm greedy = new GreedyTSPAlgorithm();
+	final double greedyResult = greedy.execute(graph);
+	System.out.println(greedyResult);
     }
 
     @Test
@@ -40,8 +44,15 @@ public class TestDynmicProgTSP {
 	final GraphReader reader = new GraphXYReader();
 	reader.read("tsp.txt");
 	final Graph graph = reader.getGraph();
-	final DynamicProgTSPAlgorithm algorithm = new DynamicProgTSPAlgorithm();
+	//final DynamicProgTSPAlgorithm algorithm = new DynamicProgTSPAlgorithm();// TODO
+	final GreedyTSPAlgorithm algorithm = new GreedyTSPAlgorithm();
 	final double result = algorithm.execute(graph);
 	System.out.println(result);
+    }
+
+    @Test
+    public void testSeveralTimes() throws IOException {
+	for (int i = 0; i < 100; i++)
+	    this.testBigGraph();
     }
 }
