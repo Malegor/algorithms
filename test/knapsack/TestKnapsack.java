@@ -13,14 +13,9 @@ import org.junit.Test;
 public class TestKnapsack {
 
     @Test
-    public void testDynamicAndGreedyAlgorithms() {
+    public void testDynamicAndGreedyAlgorithms() throws IOException {
 	final KnapsackReader reader = new KnapsackReader();
-	try {
-	    reader.read("knapsack_big.txt");
-	} catch (final IOException e) {
-	    e.printStackTrace();
-	    return;
-	}
+	reader.read("knapsack_big.txt");
 	final Set<KnapsackItem> items = reader.getItems();
 	final int capacity = reader.getKnapsackCapacity();
 	final GreedyKnapsackAlgorithm greedyAlgorithm = new GreedyKnapsackAlgorithm(capacity);

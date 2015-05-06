@@ -13,14 +13,9 @@ import scheduling.minweigthedcompletiontime.data.JobsInputReader;
 public class TestMinWeightedCompletionTime {
 
     @Test
-    public void testAlgorithm() {
+    public void testAlgorithm() throws IOException {
 	final JobsInputReader reader = new JobsInputReader();
-	try {
-	    reader.read("jobs.txt");
-	} catch (final IOException e) {
-	    e.printStackTrace();
-	    return;
-	}
+	reader.read("jobs.txt");
 	final List<Job> inputJobs = reader.getJobs();
 	final JobOrderingAlgorithm jobOrderingAlgorithm = new JobOrderingAlgorithm();
 	final List<Job> outputJobs = jobOrderingAlgorithm.orderJobs(inputJobs, new DecreasingDifferenceComparator());

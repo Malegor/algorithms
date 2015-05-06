@@ -13,14 +13,9 @@ import org.junit.Test;
 public class TestMinSpanningTree {
 
     @Test
-    public void testExecute() {
+    public void testExecute() throws IOException {
 	final GraphReader reader = new GraphReader(false);
-	try {
-	    reader.read("edges.txt");
-	} catch (final IOException e) {
-	    e.printStackTrace();
-	    return;
-	}
+	reader.read("edges.txt");
 	final Graph graph = reader.getGraph();
 	final PrimsAlgorithm primsAlgorithm = new PrimsAlgorithm();
 	final Set<Edge> minSpanningTree = primsAlgorithm.execute(graph);

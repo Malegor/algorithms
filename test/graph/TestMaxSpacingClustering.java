@@ -15,14 +15,9 @@ import org.junit.Test;
 public class TestMaxSpacingClustering {
 
     @Test
-    public void testGreedyAlgorithm() {
+    public void testGreedyAlgorithm() throws IOException {
 	final GraphReader reader = new GraphReader(false);
-	try {
-	    reader.read("clustering1.txt");
-	} catch (final IOException e) {
-	    e.printStackTrace();
-	    return;
-	}
+	reader.read("clustering1.txt");
 	final Graph graph = reader.getGraph();
 	final Integer numberOfClusters = Integer.valueOf(4);
 	final GreedyClusterAlgorithm greedyAlgorithm = new GreedyClusterAlgorithm(numberOfClusters, -1);
