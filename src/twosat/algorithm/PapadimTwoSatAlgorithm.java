@@ -1,5 +1,7 @@
 package twosat.algorithm;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -9,11 +11,12 @@ import twosat.data.LogicalSet;
 
 public class PapadimTwoSatAlgorithm {
 
-    private final long numberOfRandomWalks, numberOfDiversifications;
+    private final long numberOfRandomWalks, numberOfDiversifications, numberOfAttemptsWithOneUnsat;
 
     public PapadimTwoSatAlgorithm(final long nbOfRandomWalks, final long nbOfDiversifications) {
 	this.numberOfRandomWalks = nbOfRandomWalks;
 	this.numberOfDiversifications = nbOfDiversifications;
+	this.numberOfAttemptsWithOneUnsat = 200;
     }
 
     public PapadimTwoSatAlgorithm(final long numberOfVariables) {
@@ -24,41 +27,55 @@ public class PapadimTwoSatAlgorithm {
 	this.deleteObviousAssignments(logicalSet);
 	if (logicalSet.getVariables().isEmpty())
 	    return true;
-	Clause toSatisfy;
-	final Random random = new Random();
 	for (int diversification = 0; diversification < this.numberOfDiversifications; diversification++) {
 	    System.out.println("Attempt " + (diversification + 1));
 	    logicalSet.setRandomAssignment();
 	    // Generate from stratch a random assignment
-	    for (int improvement = 0; improvement < this.numberOfRandomWalks; improvement++) {
-		if (logicalSet.isSatisfied())
-		    return true;
-		toSatisfy = this.randomSelect(logicalSet.getUnsatisfiedClauses());
-		logicalSet.satisfyClause(toSatisfy, random.nextBoolean());
-	    }
-	    if (logicalSet.isSatisfied())
+	    if (this.improveCurrentAssignment(logicalSet))
 		return true;
 	}
 	return false;
     }
 
+    private boolean improveCurrentAssignment(final LogicalSet logicalSet) {
+	int onlyOneUnsatisfied = 0;
+	Clause toSatisfy;
+	Set<Clause> unsatisfiedClauses;
+	final Random random = new Random();
+	for (int improvement = 0; improvement < this.numberOfRandomWalks; improvement++) {
+	    if (logicalSet.isSatisfied())
+		return true;
+	    unsatisfiedClauses = logicalSet.getUnsatisfiedClauses();
+	    if (unsatisfiedClauses.size() == 1) {
+		onlyOneUnsatisfied++;
+		if (onlyOneUnsatisfied > this.numberOfAttemptsWithOneUnsat)
+		    return false;
+	    }
+	    toSatisfy = this.randomSelect(unsatisfiedClauses);
+	    logicalSet.satisfyClause(toSatisfy, random.nextBoolean());
+	}
+	return logicalSet.isSatisfied();
+    }
+
     private void deleteObviousAssignments(final LogicalSet logicalSet) {
-	BooleanVariable variableToDelete = this.findVariableWithObviousAssignment(logicalSet);
+	Set<BooleanVariable> variablesToDelete = this.findVariablesWithObviousAssignment(logicalSet);
 	int numberOfDeleted = 0;
-	while (variableToDelete != null) {
-	    logicalSet.deleteVariable(variableToDelete);
-	    variableToDelete = this.findVariableWithObviousAssignment(logicalSet);
-	    numberOfDeleted++;
+	while (!variablesToDelete.isEmpty()) {
+	    logicalSet.deleteVariables(variablesToDelete);
+	    numberOfDeleted += variablesToDelete.size();
+	    variablesToDelete = this.findVariablesWithObviousAssignment(logicalSet);
 	}
 	System.out.println(numberOfDeleted + " deleted variables.");
     }
 
-    private BooleanVariable findVariableWithObviousAssignment(final LogicalSet logicalSet) {
-	for (final BooleanVariable variable : logicalSet.getVariables())
+    private Set<BooleanVariable> findVariablesWithObviousAssignment(final LogicalSet logicalSet) {
+	final Collection<BooleanVariable> allVariables = logicalSet.getVariables();
+	final Set<BooleanVariable> toRemove = new HashSet<BooleanVariable>(allVariables.size());
+	for (final BooleanVariable variable : allVariables)
 	    if (variable.getNegatedClauses().isEmpty() || variable.getStraightClauses().isEmpty())
 		//System.out.println("Found " + variable);
-		return variable;
-	return null;
+		toRemove.add(variable);
+	return toRemove;
     }
 
     private Clause randomSelect(final Set<Clause> unsatisfiedClauses) {

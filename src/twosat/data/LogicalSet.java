@@ -72,22 +72,30 @@ public class LogicalSet {
 	for (final Clause changedClause : clausesMaybeNotSatisfiedAnyMore)
 	    if (!changedClause.isSatisfied())
 		this.unsatisfiedClauses.add(changedClause);
+	for (final Clause oneclause : this.clauses)
+	    if (this.unsatisfiedClauses.contains(oneclause) == oneclause.isSatisfied())
+		System.out.println("ERROR!");
     }
 
     public Collection<BooleanVariable> getVariables() {
 	return this.variables.values();
     }
 
-    public void deleteVariable(final BooleanVariable variableToDelete) {
-	this.variables.remove(Long.valueOf(variableToDelete.getId()));
-	final Set<Clause> relatedClauses = new HashSet<Clause>(variableToDelete.getNegatedClauses());
-	relatedClauses.addAll(variableToDelete.getStraightClauses());
-	BooleanVariable otherVariable;
-	for (final Clause clause : relatedClauses) {
-	    otherVariable = clause.getOtherVariable(variableToDelete);
-	    otherVariable.getNegatedClauses().remove(clause);
-	    otherVariable.getStraightClauses().remove(clause);
+    public void deleteVariables(final Set<BooleanVariable> variablesToDelete) {
+	Set<Clause> relatedClauses;
+	final Set<Clause> clausesToRemove = new HashSet<Clause>(variablesToDelete.size());
+	for (final BooleanVariable variable : variablesToDelete) {
+	    this.variables.remove(Long.valueOf(variable.getId()));
+	    relatedClauses = new HashSet<Clause>(variable.getNegatedClauses());
+	    relatedClauses.addAll(variable.getStraightClauses());
+	    BooleanVariable otherVariable;
+	    for (final Clause clause : relatedClauses) {
+		otherVariable = clause.getOtherVariable(variable);
+		otherVariable.getNegatedClauses().remove(clause);
+		otherVariable.getStraightClauses().remove(clause);
+	    }
+	    clausesToRemove.addAll(relatedClauses);
 	}
-	this.clauses.removeAll(relatedClauses);
+	this.clauses.removeAll(clausesToRemove);
     }
 }

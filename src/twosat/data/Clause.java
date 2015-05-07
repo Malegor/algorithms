@@ -13,8 +13,8 @@ public class Clause {
 	this.variable2 = var1hasLowerId ? var2 : var1;
 	this.isStraight1 = var1hasLowerId ? straight1 : straight2;
 	this.isStraight2 = var1hasLowerId ? straight2 : straight1;
-	this.variable1.addClause(this, straight1);
-	this.variable2.addClause(this, straight2);
+	this.variable1.addClause(this, this.isStraight1);
+	this.variable2.addClause(this, this.isStraight2);
     }
 
     @Override

@@ -33,8 +33,7 @@ public class TestTwoSat {
 	final TwoSatReader reader = new TwoSatReader();
 	reader.read(fileName);
 	final LogicalSet logicalSet = reader.getLogicalSet();
-	final int size = logicalSet.getVariables().size();
-	final PapadimTwoSatAlgorithm algorithm = new PapadimTwoSatAlgorithm(100000, 10);
+	final PapadimTwoSatAlgorithm algorithm = new PapadimTwoSatAlgorithm(200000, 20);
 	if (!algorithm.execute(logicalSet)) {
 	    System.out.println("No assignment found!");
 	    return;
